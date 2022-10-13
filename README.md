@@ -242,7 +242,7 @@ func main() {
 - `cargo-eval` is installed. Install using `cargo install cargo-eval`.
 - Import statements and external crates is supported by `cargo-eval`. Read
 	their [documentation](https://github.com/reitermarkus/cargo-eval).
-- Every code block must a main function.
+- Every code block must have a main function.
 
 ```rust
 fn main() {
@@ -274,8 +274,14 @@ hello("Bob")
 
 <details>
 <summary>Haskell</summary>
-- Requirements: Ghci is installed and correct path is set in the settings.
-- If you have a main function you have to manually call it.
+
+- You can either use <strong>runghc</strong> (compiler) or <strong>ghci</strong> (interpreter) to run your code.
+  - <strong>runghc</strong> requirements:
+  	- runghc and ghc are installed and correct paths are set in the settings.
+    - Every code block must contain a main function.
+  - <strong>ghci</strong>  requirements:
+    - ghci is installed and correct path is set in the settings.
+	- If you have a main function you have to manually call it.
 
 ```haskell
 mySum:: Num a => a -> a -> a
@@ -304,8 +310,9 @@ The following magic commands are supported:
 - `@show(ImagePath)`: Displays an image at the given path in the note.
 - `@show(ImagePath, Width, Height)`: Displays an image at the given path in the note.
 - `@show(ImagePath, Width, Height, Alignment[center|left|right])`: Displays an image at the given path in the note.
+- `@html(HtmlSource)`: Displays HTML in the note
 
-(`@show(...)` is only supported for JavaScript and Python yet.)
+(`@show(...)` and `@html(...)` are only supported for JavaScript and Python yet.)
 
 ![Example how to use the magic commands.](https://github.com/twibiral/obsidian-execute-code/blob/master/images/magic_example.png?raw=true)
 
@@ -403,12 +410,13 @@ A few languages (currently JS and Python) support *Notebook Mode*. If a language
 
 Variables functions, etc. defined in one code block will be available in other code blocks. Code blocks are executed on demand; the order of code blocks in the file does not affect the order in which they are executed:
 
-```
+``````
 ```js
 console.log(f)
 ```
 ```js
 let f = 3;
+```
 ``````
 
 Running the first code block, then the second, then the first again will give:
@@ -422,6 +430,9 @@ undefined
 To manage the open runtimes for Notebook Mode, you can use the `Open Code Runtime Management` command in the command palette. From this sidebar window, you can stop kernels.
 
 
+## Style Settings
+
+This plugin supports customising styles using the [Style Settings plugin](https://github.com/mgmeyers/obsidian-style-settings). It's possible to customise the color of code block outputs and errors.
 
 ## Installation
 
@@ -437,14 +448,15 @@ Do not execute code from sources you don't know or code you don't understand. Ex
 
 ## Known Problems
 
+- On Linux, Snap/Flatpak/AppImage installations of Obsidian run in an isolated environment. As such, they will not have access to any of your installed programs. If you are on Linux, make sure to install the `.deb` version of Obsidian. If your distro isn't compatible with `.deb` files, you may see issues.
 - Missing when `run` button after switching the theme: Try to close and reopen your notes and wait for a few minutes. It seems like obsidian doesn't call the postprocessors after the theme switch.
 - Pre- / Post-blocks may not be executed if the file contains duplicate code blocks.
+- In Python, Embed Plots may not be off while Notebook Mode is on
 
 ## Future Work
 
 - Find better way to show that the program is running (for example a loading sign).
 - Notebook Mode similar to Jupyter
-- Key combination to execute all code blocks in a file
 - Error warning when the execution fails (e.g. when python isn't installed)
 - Test if this plugin works in combination with dataview.
 
