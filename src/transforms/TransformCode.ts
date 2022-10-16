@@ -13,6 +13,7 @@ import type {LanguageId} from "src/main";
 export function getLanguageAlias(language: string | undefined): LanguageId | undefined {
 	if (language === undefined) return undefined;
 	const replaced = language
+		.toLowerCase()
 		.replace("javascript", "js")
 		.replace("typescript", "ts")
 		.replace("csharp", "cs")
