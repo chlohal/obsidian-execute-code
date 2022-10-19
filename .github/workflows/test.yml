@@ -1,0 +1,41 @@
+
+name: On Push
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  run_tests:
+    name: "Run Tests"
+    runs-on: ubuntu-latest
+    env:
+      OBSIDIAN_DEB_URL: https://github.com/obsidianmd/obsidian-releases/releases/download/v1.0.0/obsidian_1.0.0_amd64.deb
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build Plugin
+        run: |-
+          npm i
+          npm run build
+          
+      - name: Install Plugin
+        run: |-
+          mkdir -p test/test-vault/.obsidian/plugins/execute-code
+          mv src/main.js test/test-vault/.obsidian/plugins/execute-code
+          mv src/styles.css test/test-vault/.obsidian/plugins/execute-code
+          mv manifest.json test/test-vault/.obsidian/plugins/execute-code
+          
+      - name: Get Obsidian 
+        run: |-
+          wget -O ./test/obsidian.deb "$OBSIDIAN_DEB_URL"
+          sudo apt update
+          sudo apt install ./test/obsidian.deb
+          
+      - name: Run Obsidian
+        run: |-
+          obsidian
+        
+        
+      
+      
