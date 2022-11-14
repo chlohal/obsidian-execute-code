@@ -12,19 +12,24 @@ export interface ExecutorSettings {
 	nodePath: string;
 	nodeArgs: string;
 	jsInject: string;
+	jsFileExtension: string;
 	tsPath: string;
 	tsArgs: string;
+	tsFileExtension: string;
 	tsInject: string;
 	luaPath: string;
 	luaArgs: string;
 	luaInject: string;
+	luaFileExtension: string;
 	csPath: string;
 	csArgs: string;
 	csInject: string;
+	csFileExtension: string;
 	pythonPath: string;
 	pythonArgs: string;
 	pythonEmbedPlots: boolean;
 	pythonInject: string;
+	pythonFileExtension: string
 	shellPath: string;
 	shellArgs: string;
 	shellFileExtension: string;
@@ -52,6 +57,7 @@ export interface ExecutorSettings {
 	rustInject: string;
 	cppRunner: string;
 	cppInject: string;
+	cppFileExtension: string;
 	cppUseMain: boolean;
 	clingPath: string;
 	clingArgs: string;
@@ -59,6 +65,7 @@ export interface ExecutorSettings {
 	rustFileExtension: string,
 	RPath: string;
 	RArgs: string;
+	rFileExtension: string;
 	REmbedPlots: boolean;
 	rInject: string;
 	kotlinPath: string;
@@ -69,6 +76,7 @@ export interface ExecutorSettings {
 	ghcPath: string;
 	ghciPath: string;
 	haskellInject: string;
+	haskellFileExtension: string;
 	useGhci: boolean;
 	mathematicaPath: string;
 	mathematicaArgs: string;
@@ -106,7 +114,7 @@ export interface ExecutorSettings {
  */
 export const DEFAULT_SETTINGS: ExecutorSettings = {
 	lastOpenLanguageTab: undefined,
-	
+
 	timeout: 10000,
 	allowInput: true,
 	wslMode: false,
@@ -170,7 +178,7 @@ export const DEFAULT_SETTINGS: ExecutorSettings = {
 	ghcPath: "ghc",
 	ghciPath: "ghci",
 	useGhci: false,
-  haskellInject: "",
+	haskellInject: "",
 	mathematicaPath: "wolframscript",
 	mathematicaArgs: "",
 	mathematicaFileExtension: "wls",
@@ -198,5 +206,13 @@ export const DEFAULT_SETTINGS: ExecutorSettings = {
 	kotlinInteractive: false,
 	mathematicaInteractive: false,
 	haskellInteractive: false,
-	scalaInteractive: false
+	scalaInteractive: false,
+	jsFileExtension: "js",
+	tsFileExtension: "ts",
+	luaFileExtension: "lua",
+	csFileExtension: "csx",
+	pythonFileExtension: "py",
+	cppFileExtension: "cpp",
+	rFileExtension: "R",
+	haskellFileExtension: "hs"
 }
