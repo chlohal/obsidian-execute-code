@@ -3,7 +3,7 @@ import { LanguageId } from "src/main";
 export const DISPLAY_NAMES: Record<LanguageId, string> = {
     cpp: "C++",
     cs: "C#",
-    go: "Golang",
+    golang: "Golang",
     groovy: "Groovy",
     haskell: "Haskell",
     java: "Java",

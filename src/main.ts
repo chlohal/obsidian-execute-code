@@ -16,9 +16,9 @@ import ExecutorManagerView, {
 
 import runAllCodeBlocks from './runAllCodeBlocks';
 
-export const languageAliases = ["javascript", "typescript", "bash", "csharp", "wolfram", "nb", "wl", "hs", "py"] as const;
+export const languageAliases = ["javascript", "typescript", "bash", "csharp", "wolfram", "nb", "wl", "hs", "py", "go"] as const;
 export const canonicalLanguages = ["js", "ts", "cs", "lua", "python", "cpp",
-	"prolog", "shell", "groovy", "r", "go", "rust", "java", "powershell", "kotlin", "mathematica", "haskell", "scala"] as const;
+	"prolog", "shell", "groovy", "r", "golang", "rust", "java", "powershell", "kotlin", "mathematica", "haskell", "scala"] as const;
 export const supportedLanguages = [...languageAliases, ...canonicalLanguages] as const;
 
 
@@ -276,7 +276,7 @@ export default class ExecuteCodePlugin extends Plugin {
 				this.runCode(transformedCode, out, button, this.settings.RPath, this.settings.RArgs, this.settings.rFileExtension, language, file);
 			});
 
-		} else if (language === "go") {
+		} else if (language === "golang") {
 			button.addEventListener("click", async () => {
 				button.className = runButtonDisabledClass;
 				const transformedCode = await new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
@@ -314,7 +314,7 @@ export default class ExecuteCodePlugin extends Plugin {
 		} else if (language === "haskell") {
 			button.addEventListener("click", async () => {
 				button.className = runButtonDisabledClass;
-				const transformedCode = await new CodeInjector(this.app, this.settings, "haskell").injectCode(srcCode);
+				const transformedCode = await new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
 				this.runCodeInShell(transformedCode, out, button, this.settings.useGhci ? this.settings.ghciPath : this.settings.runghcPath, this.settings.useGhci ? "" : "-f "+this.settings.ghcPath, this.settings.haskellFileExtension, language, file);
 			});
 

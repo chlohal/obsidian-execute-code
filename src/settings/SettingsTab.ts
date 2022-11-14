@@ -131,7 +131,7 @@ export class SettingsTab extends PluginSettingTab {
 
 
 		// ========== Golang =========
-		makeGoSettings(this, this.makeContainerFor("go"));
+		makeGoSettings(this, this.makeContainerFor("golang"));
 
 
 		// ========== Rust ===========
