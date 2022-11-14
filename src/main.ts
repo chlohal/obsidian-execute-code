@@ -216,7 +216,7 @@ export default class ExecuteCodePlugin extends Plugin {
 			button.addEventListener("click", async () => {
 				button.className = runButtonDisabledClass;
 				const transformedCode = await new CodeInjector(this.app, this.settings, language).injectCode(srcCode);
-				this.runCode(transformedCode, out, button, this.settings.clingPath, `-std=${this.settings.clingStd} ${this.settings.clingArgs}`, this.settings.cppFileExtension, language, file);
+				this.runCode(transformedCode, out, button, this.settings.clingPath, this.settings.clingArgs, this.settings.cppFileExtension, language, file);
 			});
 
 		} else if (language === "prolog") {
